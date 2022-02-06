@@ -56,11 +56,13 @@ DEVELOPMENT NOTES
 
 [CURRENT UPDATE]
 
-0.0.000.0001 / 2022.02.05
+0.0.000.0001 / 2022.02.06
 
 - Initial build of this tool
 - Added DB baseline sub
 - Added settings creation and extraction with encryption
 - Added folder structure and DB check
+- Fixed issue with settings file not unlocking in some scenarios
+- Built out complete db file exists check
 
 =============================================
