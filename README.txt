@@ -64,5 +64,9 @@ DEVELOPMENT NOTES
 - Added folder structure and DB check
 - Fixed issue with settings file not unlocking in some scenarios
 - Built out complete db file exists check
+- Build main menu form (disabled buttons temporarily until completed)
+- Added autoload functionality to settings and mainmenu
+- Updatesettings now works correct on exit
+- Added exit dialog
 
 =============================================

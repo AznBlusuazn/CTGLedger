@@ -7,4 +7,5 @@
     Public Shared ReadOnly Phoenix As String = Application.CompanyName
     Public Shared ReadOnly Teddy As String = "dQZ1AxuTQMmPdMjTuoRIHK90p/g4e3slNNQLnFy5lpgQ4bLlgMlqQw=="
     Public Shared FullDB As String
+    Public Shared AutoLoad As Boolean = False
 End Class

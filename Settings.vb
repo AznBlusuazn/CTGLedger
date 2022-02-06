@@ -9,7 +9,7 @@ Public Class Settings
     End Sub
     Private Shared Sub BuildSettings()
         Dim fs As FileStream = File.Create(Mem.Settings)
-        Dim JsonData As String = SettingsData({$"{Mem.DBName}{Mem.DBExt}"})
+        Dim JsonData As String = SettingsData({$"{Mem.DBName}{Mem.DBExt}", Mem.AutoLoad})
         Dim X As New Coder((New Coder(Mem.Phoenix)).DecryptData(Mem.Teddy))
         Dim data As Byte() = New UTF8Encoding(True).GetBytes(X.EncryptData(JsonData))
         fs.Write(data, 0, data.Length)
@@ -22,11 +22,9 @@ Public Class Settings
         BuildSettings()
     End Sub
     Private Shared Function SettingsData(data() As String) As String
-        Dim Set01 As New SetData() With {.LastFile = data(0)}
+        Dim DataSet As New SetData() With {.LastFile = data(0), .AutoLoad = data(1)}
         'Add more with this format:
-        'Dim SetXX as New SetData() With {.NameOfSettings = data(y)}
-        'Add to SetData class below as well
-        Dim SetFinal As New List(Of SetData)() From {Set01}
+        Dim SetFinal As New List(Of SetData)() From {DataSet}
         Return JsonConvert.SerializeObject(SetFinal)
     End Function
     Private Shared Sub GetSettings()
@@ -38,12 +36,19 @@ Public Class Settings
         reader.Dispose()
         Dim RawData As String = X.DecryptData(Encrypted)
         Dim Converted = JsonConvert.DeserializeObject(Of List(Of SetData))(RawData)
+        'Last Database Loaded Setting
         Mem.DBName = Converted(0).LastFile.ToString.Split(".")(0)
-        'Add additional settings with x = Converted(y).NameOfSettings (with whatever else is needed)
         Mem.FullDB = $"{Mem.DBDir}\{Mem.DBName}{Mem.DBExt}"
+        MainMenu.UpdateDBName($"{Mem.DBName}")
+        'AutoLoad Last Database setting
+        If Converted(0).AutoLoad.ToString.Equals("True") Then Mem.AutoLoad = True Else Mem.AutoLoad = False
+        If Mem.AutoLoad Then MainMenu.MainALCheck.CheckState = CheckState.Checked Else MainMenu.MainALCheck.CheckState = CheckState.Unchecked
+        'Add additional settings with x = Converted(0).NameOfSettings (with whatever else is needed)
+
     End Sub
 End Class
 Public Class SetData
     Public Property LastFile As String
+    Public Property AutoLoad As String
     'Add additional Public Property items here for more Settings
 End Class
