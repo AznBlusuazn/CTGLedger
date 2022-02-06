@@ -21,7 +21,17 @@ Public Class Database
         End Try
     End Sub
     Public Shared Sub Check()
-        If File.Exists($"{Mem.FullDB}") Then MsgBox("Exists") Else MsgBox("NOPE")
-        'TODO:  replace with full check process
+        Dim OGDB As String = Mem.DBName
+        If Not File.Exists(Mem.FullDB) Then
+            Mem.DBName = "Default"
+            Mem.FullDB = $"{Mem.DBDir}\{Mem.DBName}{Mem.DBExt}"
+            If Not File.Exists(Mem.FullDB) Then
+                Baseline($"{Mem.DBName}{Mem.DBExt}")
+                MsgBox($"{Mem.DBName}{Mem.DBExt} did not exist, so created empty DB.")
+            Else
+                MsgBox($"Could find {OGDB}{Mem.DBExt} did not exist, so switched to Default DB.")
+            End If
+        End If
+        Settings.UpdateSettings()
     End Sub
 End Class

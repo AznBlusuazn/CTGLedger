@@ -16,6 +16,11 @@ Public Class Settings
         fs.Close()
         fs.Dispose()
     End Sub
+
+    Public Shared Sub UpdateSettings()
+        FilesFolders.DeleteFile(Mem.Settings)
+        BuildSettings()
+    End Sub
     Private Shared Function SettingsData(data() As String) As String
         Dim Set01 As New SetData() With {.LastFile = data(0)}
         'Add more with this format:
@@ -25,9 +30,13 @@ Public Class Settings
         Return JsonConvert.SerializeObject(SetFinal)
     End Function
     Private Shared Sub GetSettings()
-        Dim X As New Coder((New Coder(Mem.Phoenix)).DecryptData(Mem.Teddy))
-        Dim RawData As String = (X.DecryptData(My.Computer.FileSystem.
-            OpenTextFileReader($"{Mem.Settings}").ReadToEnd()))
+        Dim X As New Coder(New Coder(Mem.Phoenix).DecryptData(Mem.Teddy))
+        Dim reader As StreamReader
+        reader = My.Computer.FileSystem.OpenTextFileReader($"{Mem.Settings}")
+        Dim Encrypted As String = reader.ReadToEnd()
+        reader.Close()
+        reader.Dispose()
+        Dim RawData As String = X.DecryptData(Encrypted)
         Dim Converted = JsonConvert.DeserializeObject(Of List(Of SetData))(RawData)
         Mem.DBName = Converted(0).LastFile.ToString.Split(".")(0)
         'Add additional settings with x = Converted(y).NameOfSettings (with whatever else is needed)
