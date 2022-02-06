@@ -58,6 +58,9 @@ DEVELOPMENT NOTES
 
 0.0.000.0001 / 2022.02.05
 
-- Initial Commit of this tool (mainly folder structure and license/readme files)
+- Initial build of this tool
+- Added DB baseline sub
+- Added settings creation and extraction with encryption
+- Added folder structure and DB check
 
 =============================================
