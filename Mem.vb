@@ -8,4 +8,6 @@
     Public Shared ReadOnly Teddy As String = "dQZ1AxuTQMmPdMjTuoRIHK90p/g4e3slNNQLnFy5lpgQ4bLlgMlqQw=="
     Public Shared FullDB As String
     Public Shared AutoLoad As Boolean = False
+    Public Shared Version As String, Available As String, UpdateURL As String, UpdaterD As String
+    Public Shared ReadOnly Updater As String = "CTGUpdater.exe"
 End Class

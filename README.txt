@@ -56,7 +56,7 @@ DEVELOPMENT NOTES
 
 [CURRENT UPDATE]
 
-0.0.000.0001 / 2022.02.06
+0.0.000.0001 / 2022.02.07
 
 - Initial build of this tool
 - Added DB baseline sub
@@ -68,5 +68,7 @@ DEVELOPMENT NOTES
 - Added autoload functionality to settings and mainmenu
 - Updatesettings now works correct on exit
 - Added exit dialog
+- Added update checker and CTGUpdater.exe updater code
+- Added version variables to mem as needed
 
 =============================================

@@ -22,7 +22,7 @@
         'opens options dialog
     End Sub
     Private Sub MainUpButton_Click(sender As Object, e As EventArgs) Handles MainUpButton.Click
-        'launch update check
+        CheckUpdate(False)
     End Sub
     Private Sub MainExitButton_Click(sender As Object, e As EventArgs) Handles MainExitButton.Click
         OnExit()
@@ -46,7 +46,26 @@
             Settings.UpdateSettings()
             Environment.Exit(0)
         End If
-
+    End Sub
+    Public Shared Sub CheckUpdate(startup As Boolean)
+        Mem.Version = ClarkTribeGames.Converters.GetVersion(Application.ProductVersion)
+        Mem.UpdaterD = ClarkTribeGames.MySQLReader.Query(LCase(Mem.Updater).Replace(".exe", ""), "d")
+        If System.IO.File.Exists(Mem.Updater) Then
+            If System.IO.File.GetLastWriteTime(Mem.Updater) < Convert.ToDateTime(Mem.UpdaterD) Then
+                System.IO.File.Delete(Mem.Updater)
+                ClarkTribeGames.Updater.GetUpdater()
+            End If
+        Else
+            ClarkTribeGames.Updater.GetUpdater()
+        End If
+        Mem.Available = ClarkTribeGames.MySQLReader.Query(LCase(Application.ProductName.ToString()), "v")
+        Mem.UpdateURL = ClarkTribeGames.MySQLReader.Query(LCase(Application.ProductName.ToString()), "u")
+        If ClarkTribeGames.Updater.Checker(Mem.Version, Mem.Available) = True Then
+            Dim Answer As Integer = MsgBox($"Update {Mem.Available} Available!{vbCrLf}{vbCrLf}Would you like to update now?", vbYesNo + vbExclamation)
+            If Answer = vbYes Then ClarkTribeGames.Updater.InstallUpdate(Application.ProductName, Mem.UpdateURL) Else MsgBox("Please update as soon as possible!")
+        Else
+            If startup = False Then MsgBox("No Update Available!")
+        End If
     End Sub
     Public Shared Sub FlipButton(button As Button, mode As Boolean)
         If mode = False Then
