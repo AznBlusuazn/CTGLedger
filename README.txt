@@ -56,7 +56,7 @@ DEVELOPMENT NOTES
 
 [CURRENT UPDATE]
 
-0.0.000.0001 / 2022.02.07
+0.0.000.0001 / 2022.02.08
 
 - Initial build of this tool
 - Added DB baseline sub
@@ -70,5 +70,9 @@ DEVELOPMENT NOTES
 - Added exit dialog
 - Added update checker and CTGUpdater.exe updater code
 - Added version variables to mem as needed
+- Renamed Main form to MainMenu to avoid naming conflicts
+- Created ledger form with data grid
+- Created query to get Category Name from the Category table
+- Added function to add a row to the Ledger grid with correct readable formatting
 
 =============================================

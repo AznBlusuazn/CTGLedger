@@ -99,13 +99,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Init.vb" />
-    <Compile Include="Mem.vb" />
-    <Compile Include="Database.vb" />
-    <Compile Include="Main.vb">
+    <Compile Include="Ledger.Designer.vb">
+      <DependentUpon>Ledger.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Ledger.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Main.Designer.vb">
-      <DependentUpon>Main.vb</DependentUpon>
+    <Compile Include="Mem.vb" />
+    <Compile Include="Database.vb" />
+    <Compile Include="MainMenu.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.vb">
+      <DependentUpon>MainMenu.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -127,8 +133,11 @@
     <Compile Include="Settings.vb" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Main.resx">
-      <DependentUpon>Main.vb</DependentUpon>
+    <EmbeddedResource Include="Ledger.resx">
+      <DependentUpon>Ledger.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>

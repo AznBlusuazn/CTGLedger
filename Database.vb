@@ -34,4 +34,8 @@ Public Class Database
         End If
         Settings.UpdateSettings()
     End Sub
+
+    Public Shared Function GetCat(catid As String) As String
+        Return SQLite.GetValue(Mem.DBDir, $"{Mem.DBName}{Mem.DBExt}", "Categories", "Name", "ID", catid)
+    End Function
 End Class

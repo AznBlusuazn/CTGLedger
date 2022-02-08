@@ -7,7 +7,7 @@
         Settings.UpdateSettings()
     End Sub
     Private Sub MainGoButton_Click(sender As Object, e As EventArgs) Handles MainGoButton.Click
-        'launch ledger here
+        Ledger.ShowDialog()
     End Sub
     Private Sub MainDBButton_Click(sender As Object, e As EventArgs) Handles MainDBButton.Click
         'opens change database dialog
